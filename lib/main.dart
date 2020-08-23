@@ -58,12 +58,15 @@ class _MyHomePageState extends State<MyHomePage> {
               },
             ),
 //            Text('Is Bluetooth On : $_isBluetoothOn'),
+            Padding(
+              padding: EdgeInsets.all(10.0),
+            ),
             Text(
               'Welcome to AdiDart',
               textAlign: TextAlign.center,
               overflow: TextOverflow.ellipsis,
 //              style: TextStyle(fontWeight: FontWeight.bold),
-              style: TextStyle(height: 2, fontSize: 30),
+              style: TextStyle(height: 2, fontSize: 20),
             ),
             Text(
               'Vision-System for Steeldart',
@@ -71,6 +74,9 @@ class _MyHomePageState extends State<MyHomePage> {
               overflow: TextOverflow.ellipsis,
 //              style: TextStyle(fontWeight: FontWeight.bold),
               style: TextStyle(height: 2, fontSize: 15),
+            ),
+            Padding(
+              padding: EdgeInsets.all(10.0),
             ),
             ButtonBar(
                 children: [
@@ -115,20 +121,21 @@ class PlayGame extends StatelessWidget {
         body: new Container(
 //            padding: EdgeInsets.all(8.0),
             child: new Column(
-//                mainAxisAlignment: MainAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.end,
                 children: <Widget>[
               new IconButton(
                   icon: Icon(Icons.bluetooth),
                   iconSize: 25,
                   color: _isBluetoothOn ? Colors.blue : Colors.grey,
                   onPressed: () {}),
-              new Text(
-                'Game settings:',
-                style:
-                    new TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
-              ),
-              new Row(
-                mainAxisAlignment: MainAxisAlignment.center,
+//              new Text(
+//                'Game settings:',
+//                style:
+//                    new TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
+//              ),
+                  new Row(
+                mainAxisAlignment: MainAxisAlignment.start,
                 children: <Widget>[
                   new Text(
                     'Game',
@@ -187,7 +194,7 @@ class PlayGame extends StatelessWidget {
                 ],
               ),
               new Row(
-                mainAxisAlignment: MainAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.start,
                 children: <Widget>[
                   new Text(
                     'Players',
@@ -237,7 +244,7 @@ class PlayGame extends StatelessWidget {
                 ],
               ),
               new Row(
-                mainAxisAlignment: MainAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.start,
                 children: <Widget>[
                   new Text(
                     'Play as',
@@ -290,7 +297,7 @@ class Calibration extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Calibration"),
+        title: Text("Board Calibration"),
       ),
       body: Center(
           child: Column(
@@ -301,35 +308,34 @@ class Calibration extends StatelessWidget {
                 iconSize: 25,
                 color: _isBluetoothOn ? Colors.blue : Colors.grey,
                 onPressed: () {}),
-            Text(
-              'Board calibration',
-              style: new TextStyle(fontSize: 35, fontWeight: FontWeight.bold),
-            ),
+                Padding(
+                  padding: EdgeInsets.all(10.0),
+                ),
             Text(
               'Dartboard to calibrate:',
-              style: new TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+              style: new TextStyle(fontSize: 17, fontWeight: FontWeight.bold),
             ),
-            RaisedButton(
-              onPressed: () {
-                // Navigate back to first route when tapped.
-              },
-              child: Text('WINMAU BLADE 5DC'),
-            ),
-            RaisedButton(
-              onPressed: () {
-                // Navigate back to first route when tapped.
-              },
-              child: Text('AQUIRE NEW DARTBOARD'),
-            ),
-            RaisedButton(
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => StartCalibration()),
-                );
-              },
-              child: Text('START CALIBRATION'),
-            ),
+                Padding(
+                  padding: EdgeInsets.all(10.0),
+                ),
+                DropdownButton<String>(
+                  items: <String>['Winmau Blade 5 DC', 'Winmau Blade 5', 'Winmau Blade 4', 'Unicorn Eclipse HD2'].map((String value) {
+                    return new DropdownMenuItem<String>(
+                      value: value,
+                      child: new Text(value),
+                    );
+                  }).toList(),
+                  onChanged: (_) {},
+                ),
+                RaisedButton(
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => StartCalibration()),
+                    );
+                  },
+                  child: Text('START CALIBRATION'),
+                ),
           ])),
     );
   }
