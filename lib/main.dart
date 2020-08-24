@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'dart:io';
-import 'package:flutter_ble_lib/flutter_ble_lib.dart';
-import 'package:permission_handler/permission_handler.dart';
+//import 'package:flutter_ble_lib/flutter_ble_lib.dart';
+//import 'package:permission_handler/permission_handler.dart';
 
 void main() {
   SystemChrome.setPreferredOrientations(
@@ -289,10 +289,9 @@ class PlayGame extends StatelessWidget {
   }
 //  };
 }
-
 class Calibration extends StatelessWidget {
   bool _isBluetoothOn = false;
-
+  String dropdownValue = 'Winmau Blade 5 DC';
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -319,13 +318,27 @@ class Calibration extends StatelessWidget {
                   padding: EdgeInsets.all(10.0),
                 ),
                 DropdownButton<String>(
-                  items: <String>['Winmau Blade 5 DC', 'Winmau Blade 5', 'Winmau Blade 4', 'Unicorn Eclipse HD2'].map((String value) {
-                    return new DropdownMenuItem<String>(
-                      value: value,
-                      child: new Text(value),
-                    );
-                  }).toList(),
-                  onChanged: (_) {},
+                value: dropdownValue,
+                icon: Icon(Icons.arrow_downward),
+                iconSize: 24,
+                elevation: 16,
+                style: TextStyle(color: Colors.deepPurple),
+                underline: Container(
+                height: 2,
+                color: Colors.deepPurpleAccent,
+                ),
+                onChanged: (String newValue) {
+            //    setState(() {
+            //    dropdownValue = newValue;
+            //    });
+                },
+                items: <String>['Winmau Blade 5 DC', 'Winmau Blade 5', 'Winmau Blade 4', 'Unicorn Eclipse HD2']
+                    .map<DropdownMenuItem<String>>((String value) {
+                return DropdownMenuItem<String>(
+                value: value,
+                child: Text(value),
+                );
+                }).toList(),
                 ),
                 RaisedButton(
                   onPressed: () {
